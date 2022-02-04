@@ -13,7 +13,7 @@ export default {
     },
     methods:{
         fetchUrls(videoid){
-            fetch(`${this.$hostname}/api/video/${videoid}`)
+            fetch(`${this.$apiHost}/video/${videoid}`)
             .then(x=>x.json())
             .then(x=>{console.log(x);this.directLink = x[x.length-1].url})
         }

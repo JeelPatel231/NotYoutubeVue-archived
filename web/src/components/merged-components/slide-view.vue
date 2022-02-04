@@ -24,7 +24,7 @@ export default {
         apicall(){
             if(this.query===""){return}
             console.log("fetching "+this.page)
-            fetch(`${this.$hostname}/api/search/${this.query}/${this.page}`).then(x=>x.json())
+            fetch(`${this.$apiHost}/search/${this.query}/${this.page}`).then(x=>x.json())
             .then(x=>{
                 console.log(this.apiresponse.concat(x));
                 this.apiresponse = this.apiresponse.concat(x);
@@ -43,7 +43,9 @@ export default {
     },
     created(){
         this.apicall();
-        this.getNextPage()
+    },
+    mounted(){
+        this.getNextPage();
     }
 }
 </script>
