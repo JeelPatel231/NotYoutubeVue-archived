@@ -1,12 +1,13 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Home from "@/views/Home.vue";
+import Search from "@/views/Search.vue";
 import VideoPlayer from "@/views/VideoPlayer.vue"
 
 const routes = [
   {
-    path: "/",
-    name: "Home",
-    component: Home,
+    path: "/search/:searchQuery",
+    name: "Search",
+    component: Search,
+    props : true,
   },
   {
     path : "/video/:videoid",

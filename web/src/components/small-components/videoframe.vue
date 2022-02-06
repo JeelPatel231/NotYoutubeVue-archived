@@ -12,14 +12,14 @@ export default {
         }
     },
     methods:{
-        fetchUrls(videoid){
-            fetch(`${this.$apiHost}/video/${videoid}`)
+        fetchUrls(){
+            fetch(`${this.$apiHost}/video/${this.videoid}`)
             .then(x=>x.json())
             .then(x=>{console.log(x);this.directLink = x[x.length-1].url})
         }
     },
     created(){
-        this.fetchUrls(this.videoid)
+        this.fetchUrls()
     }
 }
 </script>

@@ -9,13 +9,13 @@
 <script>
 import videocard from "../small-components/videocard.vue"
 export default {
-    name:"cardview",
+    name:"slideView",
+    props:["searchQuery"],
     components:{
         videocard,
     },
     data(){
         return {
-            query:"zutomayo",
             apiresponse : [],
             nextPageUrl: "",
             nextPageId : "",
@@ -24,8 +24,8 @@ export default {
     methods:{
         apicall(){
             if(this.query===""){return}
-            console.log("fetching "+this.query)
-            fetch(`${this.$apiHost}/search/${this.query}?id=${this.nextPageId}&url=${this.nextPageUrl}`).then(x=>x.json())
+            console.log("fetching "+this.searchQuery)
+            fetch(`${this.$apiHost}/search/${this.searchQuery}?id=${this.nextPageId}&url=${this.nextPageUrl}`).then(x=>x.json())
             .then(x=>{
                 console.log(x.itemsList);
                 this.apiresponse = this.apiresponse.concat(x.itemsList);
