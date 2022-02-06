@@ -3,7 +3,7 @@ package xyz.routes
 import io.ktor.server.application.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
-import org.schabi.newpipe.extractor.ServiceList
+import org.schabi.newpipe.extractor.ServiceList.YouTube
 
 fun Route.video() {
     get("/video/{id}") {
@@ -13,7 +13,7 @@ fun Route.video() {
 
 suspend fun videoFunction(call: ApplicationCall){
     try {
-        ServiceList.YouTube.getStreamExtractor("https://www.youtube.com/watch?v=${call.parameters["id"]}")
+        YouTube.getStreamExtractor("https://www.youtube.com/watch?v=${call.parameters["id"]}")
         .also {
             it.fetchPage()
             call.respond(it.videoStreams)
