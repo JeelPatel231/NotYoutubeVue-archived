@@ -77,6 +77,8 @@ export default {
     flex-shrink: 0;
   img{
     object-fit: contain;
+    height: 100%;
+    width: 100%;
 
     // reduce size if channel thumbnail, its 88px*88px lol
     &.channelthumb{
