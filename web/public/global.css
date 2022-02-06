@@ -14,3 +14,7 @@ html{
 body{
     background: #181818;
 }
+a{
+    color: #3ea6ff;
+    text-decoration: none;
+}

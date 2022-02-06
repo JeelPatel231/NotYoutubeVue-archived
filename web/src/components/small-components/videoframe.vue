@@ -1,29 +1,16 @@
 <template>
-  <video data-dashjs-player autoplay v-bind:src="directLink" controls></video>
+  <video id="videoplayer" data-dashjs-player autoplay v-bind:src="videourl" controls></video>
 </template>
 
 <script>
 export default {
     name:"videoframe",
-    props:['videoid'],
-    data(){
-        return{
-            directLink : null,
-        }
-    },
-    methods:{
-        fetchUrls(){
-            fetch(`${this.$apiHost}/video/${this.videoid}`)
-            .then(x=>x.json())
-            .then(x=>{console.log(x);this.directLink = x[x.length-1].url})
-        }
-    },
-    created(){
-        this.fetchUrls()
-    }
+    props:['videourl']
 }
 </script>
 
 <style>
-
+#videoplayer{
+    width: 100%;
+}
 </style>
