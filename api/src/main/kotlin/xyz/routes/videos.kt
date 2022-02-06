@@ -4,7 +4,6 @@ import io.ktor.server.application.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import org.schabi.newpipe.extractor.ServiceList
-import xyz.gson
 
 fun Route.video() {
     get("/video/{id}") {
@@ -17,11 +16,11 @@ suspend fun videoFunction(call: ApplicationCall){
         ServiceList.YouTube.getStreamExtractor("https://www.youtube.com/watch?v=${call.parameters["id"]}")
         .also {
             it.fetchPage()
-            call.respond(gson.toJson(it.videoStreams))
+            call.respond(it.videoStreams)
         }
     }
     catch (e:Exception){
-        call.respond(gson.toJson(mapOf("error" to e)))
+        call.respond(mapOf("error" to e))
     }}
 //        .also { it.videoStreams.forEach { kek -> println(kek.url) } }
 //        .also { call.respond(gson.toJson(mapOf(

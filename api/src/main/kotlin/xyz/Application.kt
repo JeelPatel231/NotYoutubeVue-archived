@@ -1,23 +1,31 @@
 package xyz
 
-import com.google.gson.Gson
+import io.ktor.serialization.gson.*
+import io.ktor.server.application.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
+import io.ktor.server.plugins.*
 import org.schabi.newpipe.extractor.NewPipe
+import org.schabi.newpipe.extractor.ServiceList
 import xyz.plugins.configureRouting
 import xyz.utils.CustomDownloader
-
-
-lateinit var gson: Gson;
+import java.text.DateFormat
 
 fun main() {
     initialize()
     embeddedServer(Netty, port = 8081, host = "0.0.0.0") {
-        configureRouting ()
+        install(DefaultHeaders)
+        install(CallLogging)
+        install(ContentNegotiation) {
+            gson {
+                setDateFormat(DateFormat.LONG)
+                setPrettyPrinting()
+            }
+        }
+        configureRouting()
     }.start(wait = true)
 }
 
 fun initialize() {
-    gson = Gson()
     NewPipe.init(CustomDownloader.getInstance())
 }

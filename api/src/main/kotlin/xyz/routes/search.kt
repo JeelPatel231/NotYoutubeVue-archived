@@ -3,30 +3,35 @@ package xyz.routes
 import io.ktor.server.application.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
-import org.schabi.newpipe.extractor.*
+import org.schabi.newpipe.extractor.InfoItem
+import org.schabi.newpipe.extractor.ListExtractor
+import org.schabi.newpipe.extractor.Page
+import org.schabi.newpipe.extractor.ServiceList
 import org.schabi.newpipe.extractor.search.SearchExtractor
-import xyz.gson
 
 fun Route.search() {
-    get("/search/{query}/{pagenum}") {
+    get("/search/{query}") {
         searchQueryFunction(call)
     }
 }
 
-// TODO: someway to store next page url so instantaneous pagination
-fun returnNthPage(extractor:SearchExtractor,number: Int): ListExtractor.InfoItemsPage<InfoItem> {
-    var pageContent = extractor.initialPage
-    (0 until number).forEach { _ ->
-        pageContent = extractor.getPage(pageContent.nextPage)
+fun returnPage(extractor: SearchExtractor,url:String? = "",id: String? = ""): ListExtractor.InfoItemsPage<InfoItem> {
+    return if (url == "" && id == "" || url == null &&  id == null){
+        extractor.fetchPage()
+        extractor.initialPage
     }
-    return pageContent
+    else {
+        extractor.getPage(Page(url, id))
+    }
 }
 
 suspend fun searchQueryFunction(call:ApplicationCall){
-    val pagenum = call.parameters["pagenum"]!!.toInt()
-    val extractor =  ServiceList.YouTube.getSearchExtractor(
-        call.parameters["query"], emptyList(), ""
-    ).also { it.fetchPage() }
+    val url = call.parameters["url"]
+    val id = call.parameters["id"]
 
-    call.respondText(gson.toJson(returnNthPage(extractor,pagenum).items))
+    ServiceList.YouTube.getSearchExtractor(
+        call.parameters["query"], emptyList(), ""
+    ).also {
+        call.respond(returnPage(it,url,id))
+    }
 }

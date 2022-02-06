@@ -17,19 +17,21 @@ export default {
         return {
             query:"zutomayo",
             apiresponse : [],
-            page:0,
+            nextPageUrl: "",
+            nextPageId : "",
         }
     },
     methods:{
         apicall(){
             if(this.query===""){return}
-            console.log("fetching "+this.page)
-            fetch(`${this.$apiHost}/search/${this.query}/${this.page}`).then(x=>x.json())
+            console.log("fetching "+this.query)
+            fetch(`${this.$apiHost}/search/${this.query}?id=${this.nextPageId}&url=${this.nextPageUrl}`).then(x=>x.json())
             .then(x=>{
-                console.log(this.apiresponse.concat(x));
-                this.apiresponse = this.apiresponse.concat(x);
+                console.log(x.itemsList);
+                this.apiresponse = this.apiresponse.concat(x.itemsList);
+                this.nextPageUrl = x.nextPage.url;
+                this.nextPageId = x.nextPage.id;
             })
-            this.page++
         },    
         getNextPage() {
             window.onscroll = () => {
@@ -43,10 +45,8 @@ export default {
     },
     created(){
         this.apicall();
-    },
-    mounted(){
         this.getNextPage();
-    }
+    },
 }
 </script>
 

@@ -31,7 +31,7 @@ tasks{
 }
 
 dependencies {
-    implementation("io.ktor:ktor-server-core:$ktor_version")
+//    implementation("io.ktor:ktor-server-core:$ktor_version")
     implementation("io.ktor:ktor-server-netty:$ktor_version")
     implementation("ch.qos.logback:logback-classic:$logback_version")
 //    testImplementation("io.ktor:ktor-server-tests:$ktor_version")
@@ -39,8 +39,9 @@ dependencies {
 
     implementation("com.github.TeamNewPipe:NewPipeExtractor:0.21.13")
     implementation("com.squareup.okhttp3:okhttp:4.9.3")
-//    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
-    implementation("com.google.code.gson:gson:2.8.9")
-    implementation("io.ktor:ktor-server-default-headers:2.0.0-beta-1")
-    implementation("io.ktor:ktor-server-cors:2.0.0-beta-1")
+    implementation("io.ktor:ktor-server-content-negotiation-jvm:2.0.0-beta-1")
+    implementation("io.ktor:ktor-server-core-jvm:2.0.0-beta-1")
+    implementation("io.ktor:ktor-serialization-gson-jvm:2.0.0-beta-1")
+    implementation("io.ktor:ktor-server-call-logging-jvm:2.0.0-beta-1")
+    implementation("io.ktor:ktor-server-default-headers-jvm:2.0.0-beta-1")
 }
