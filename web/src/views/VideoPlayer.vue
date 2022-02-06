@@ -35,5 +35,8 @@ export default {
 </script>
 
 <style>
-
+.primary{
+  padding: 24px;
+  color:#fff;
+}
 </style>

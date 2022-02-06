@@ -22,6 +22,7 @@
         <div class="content" v-bind:class="{collapsed : isCollapsed}" v-html="videoinfo.description.content"></div>
         <div class="show" v-on:click="isCollapsed = !isCollapsed">SHOW {{isCollapsed ? 'MORE' : 'LESS' }}</div>
     </div>
+    <span class="divider" />
 </div>
 </template>
 
@@ -56,7 +57,8 @@ export default {
 }
 .divider{
     height: 1px;
-    background: #ffffff30;;
+    background: #ffffff30;
+    display: block;
 }
 .channelinfoblock{
     display: flex;
