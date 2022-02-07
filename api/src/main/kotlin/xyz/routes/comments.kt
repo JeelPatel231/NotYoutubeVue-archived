@@ -10,7 +10,7 @@ import org.schabi.newpipe.extractor.comments.CommentsExtractor
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem
 
 fun Route.comments() {
-    get("/comments/{id}") {
+    get("/comments/{videoid}") {
         commentsFunction(call)
     }
 }
@@ -29,7 +29,7 @@ suspend fun commentsFunction(call:ApplicationCall){
     val url = call.parameters["url"]
     val id = call.parameters["id"]
 
-    YouTube.getCommentsExtractor("https://www.youtube.com/watch?v=${call.parameters["id"]}")
+    YouTube.getCommentsExtractor("https://www.youtube.com/watch?v=${call.parameters["videoid"]}")
         .also {
         call.respond(returnPage(it,url,id))
     }
