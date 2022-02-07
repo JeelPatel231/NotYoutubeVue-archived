@@ -1,18 +1,18 @@
 <template>
 <div class="searchresults">
     <div class="search">
-        <videocard v-for="carddata in apiresponse" :key="carddata" :carddata="carddata"/>
+        <videocardsearch v-for="carddata in apiresponse" :key="carddata" :carddata="carddata"/>
     </div>
 </div>
 </template>
 
 <script>
-import videocard from "../small-components/videocard.vue"
+import videocardsearch from "@/components/small-components/videocard-search.vue"
 export default {
     name:"slideView",
     props:["searchQuery"],
     components:{
-        videocard,
+        videocardsearch,
     },
     data(){
         return {

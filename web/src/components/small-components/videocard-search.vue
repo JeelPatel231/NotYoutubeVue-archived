@@ -24,7 +24,7 @@
 </template>
 <script>
 export default {
-  name:"videocard",
+  name:"videocardsearch",
   props:["carddata"],
   methods:{
     // https://stackoverflow.com/questions/9461621/format-a-number-as-2-5k-if-a-thousand-or-more-otherwise-900
@@ -112,10 +112,6 @@ export default {
   line-height: 1.8rem;
   font-weight: 400;
   padding-left: 16px;
-}
-
-.seperator{
-  margin: 0 5px;
 }
 
 .uploaderName{
