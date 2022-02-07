@@ -1,12 +1,12 @@
 <template>
-  <comments v-for="comment in apiresponse" :key="comment" v-bind:comment="comment" />
+  <comments v-bind:channelavatar="channelavatar" v-for="comment in apiresponse" :key="comment" v-bind:comment="comment" />
 </template>
 
 <script>
 import comments from '@/components/small-components/comments.vue'
 export default {
     name:"commentsection",
-    props:["videoid"],
+    props:["videoid","channelavatar"],
     components:{
         comments
     },

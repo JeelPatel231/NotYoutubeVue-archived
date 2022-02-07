@@ -1,6 +1,6 @@
 <template>
 <div class="comment">
-    <img v-bind:src="comment.uploaderAvatarUrl">
+    <img class="uploaderavatar" v-bind:src="comment.uploaderAvatarUrl">
     <div class="content">
         <div class="name">{{comment.name}}
             <span class="uploaddate">{{comment.textualUploadDate}}</span>
@@ -9,8 +9,10 @@
         <div class="likes">
             <span class="material-icons">thumb_up</span>
             {{comment.textualLikeCount}}
+             <span class="hearted" v-if="comment.heartedByUploader">
+                 <img v-bind:src="channelavatar">
+             </span>
         </div>
-        <span v-if="comment.heartedByUploader">HEART</span>
     </div>
 </div>
 </template>
@@ -18,7 +20,7 @@
 <script>
 export default {
     name:"comments",
-    props:["comment"],
+    props:["comment","channelavatar"],
 }
 </script>
 
@@ -30,12 +32,12 @@ export default {
 .comment{
     display: flex;
     margin-top: 16px;
-    img{
-        height: 40px;
-        width: 40px;
-        border-radius: 20px;
-        margin-right: 8px;
-    }
+}
+.uploaderavatar{
+    height: 40px;
+    width: 40px;
+    border-radius: 20px;
+    margin-right: 8px;
 }
 .content{
     display: flex;
@@ -56,7 +58,6 @@ export default {
     overflow: hidden;
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    margin-bottom: 8px;
     &.clamped{
         -webkit-line-clamp: 3;
     }
@@ -67,5 +68,28 @@ export default {
     color: #aaa;
     display: flex;
     align-items: center;
+    height: 36px;
+}
+.hearted{
+    height: 36px;
+    width: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    img{
+        height: 16px;
+        width: 16px;
+        border-radius: 8px;
+    }
+    &::after{
+        content: '♥';
+        color: red;
+        position: absolute;
+        bottom: 4px;
+        right: 6px;
+        font-size: 1.8rem;
+        font-weight: bold;
+    }
 }
 </style>

@@ -4,7 +4,7 @@
 <div class="primary">
   <videoframe v-bind:videourl="apiResponse.videoStreams.at(-1).url" />
   <description v-bind:videoinfo="apiResponse.videoinfo"/>
-  <commentsection v-bind:videoid="videoid"/>
+  <commentsection v-bind:channelavatar="apiResponse.videoinfo.uploaderAvatarUrl" v-bind:videoid="videoid"/>
 </div>
 <div class="secondary">
   <videocardsmall v-for="video in apiResponse.relatedItems.itemList" :key="video" :video="video" />
@@ -22,7 +22,7 @@ import commentsection from '@/components/merged-components/commentsection.vue'
 
 export default {
     name:"VideoPlayer",
-    props:['videourl','videoid','videoinfo'],
+    props:['videourl','videoid','videoinfo','channelavatar'],
     components:{
         videoframe,
         description,
