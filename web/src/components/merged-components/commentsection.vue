@@ -11,15 +11,15 @@
 import comments from "@/components/small-components/comments.vue";
 export default {
   name: "commentsection",
-  props: ["videoid", "channelavatar"],
+  props: ["videoid", "channelavatar", "nextPageUrl", "nextPageId"],
   components: {
     comments,
   },
   data() {
     return {
       apiresponse: [],
-      nextPageUrl: "",
-      nextPageId: "",
+      componentNextPageId: this.nextPageId,
+      componentNextPageUrl: this.nextPageUrl,
     };
   },
   methods: {
@@ -28,15 +28,22 @@ export default {
         return;
       }
       console.log("fetching " + this.videoid + " comments");
-      fetch(
-        `${this.$apiHost}/comments/${this.videoid}?id=${this.nextPageId}&url=${this.nextPageUrl}`
-      )
+      let url = ""; // need sanitizing
+      if (
+        this.componentNextPageId == undefined &&
+        this.componentNextPageUrl == undefined
+      ) {
+        url = `${this.$apiHost}/comments/${this.videoid}`;
+      } else {
+        url = `${this.$apiHost}/comments/${this.videoid}?id=${this.componentNextPageId}&url=${this.componentNextPageUrl}`;
+      }
+      fetch(url)
         .then((x) => x.json())
         .then((x) => {
           console.log(x.itemsList);
           this.apiresponse = this.apiresponse.concat(x.itemsList);
-          this.nextPageUrl = x.nextPage.url;
-          this.nextPageId = x.nextPage.id;
+          this.componentNextPageUrl = x.nextPage.url;
+          this.componentNextPageId = x.nextPage.id;
         });
     },
     getNextPage() {
