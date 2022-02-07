@@ -38,7 +38,7 @@ export default {
 }
 </script>
 
-<style lang=scss>
+<style lang=scss scoped>
 .videotitle{
     line-height: 2.6rem;
     font-size: 1.8rem;
