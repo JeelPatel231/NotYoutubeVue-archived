@@ -4,6 +4,7 @@
 <div class="primary">
   <videoframe v-bind:videourl="apiResponse.videoStreams.at(-1).url" />
   <description v-bind:videoinfo="apiResponse.videoinfo"/>
+  <comments v-bind:videoid="videoid" />
 </div>
 <div class="secondary">
   <videocardsmall v-for="video in apiResponse.relatedItems.itemList" :key="video" :video="video" />
@@ -16,6 +17,7 @@
 import videoframe from "@/components/small-components/videoframe.vue"
 import description from '@/components/small-components/description.vue'
 import videocardsmall from '@/components/small-components/videocard-small.vue'
+import comments from '@/components/small-components/comments.vue'
 
 export default {
     name:"VideoPlayer",
@@ -24,6 +26,7 @@ export default {
         videoframe,
         description,
         videocardsmall,
+        comments,
     },
     data(){
       return{
