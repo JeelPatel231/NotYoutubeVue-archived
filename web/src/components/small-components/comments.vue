@@ -5,7 +5,8 @@
         <div class="name">{{comment.name}}
             <span class="uploaddate">{{comment.textualUploadDate}}</span>
         </div>
-        <div class="commenttext clamped">{{comment.commentText}}</div>
+        <div class="commenttext" ref="comment" v-bind:class="{clamped : collapsed}">{{comment.commentText}}</div>
+        <div v-if="overflow" class="show" v-on:click="collapsed = !collapsed">{{collapsed ? 'Read more' : 'Show less' }}</div>
         <div class="likes">
             <span class="material-icons">thumb_up</span>
             {{comment.textualLikeCount}}
@@ -21,6 +22,21 @@
 export default {
     name:"comments",
     props:["comment","channelavatar"],
+    data(){
+        return{
+            collapsed: true,
+            overflow : false,
+        }
+    },
+    methods:{
+        checkOverflow(){
+            let ele = this.$refs.comment;
+            this.overflow = (ele.offsetHeight < ele.scrollHeight)
+        }
+    },
+    mounted(){
+        this.checkOverflow()
+    }
 }
 </script>
 
@@ -37,7 +53,7 @@ export default {
     height: 40px;
     width: 40px;
     border-radius: 20px;
-    margin-right: 8px;
+    margin-right: 16px;
 }
 .content{
     display: flex;
@@ -58,6 +74,7 @@ export default {
     overflow: hidden;
     display: -webkit-box;
     -webkit-box-orient: vertical;
+    white-space: pre-line;
     &.clamped{
         -webkit-line-clamp: 3;
     }
@@ -90,6 +107,17 @@ export default {
         right: 6px;
         font-size: 1.8rem;
         font-weight: bold;
+    }
+}
+.show{
+    line-height: 1.8rem;
+    font-size: 1.4rem;
+    margin-top: 4px;
+    color: #aaa;
+    font-weight: bold;
+    cursor: pointer;
+    &:hover{
+        text-decoration: underline;
     }
 }
 </style>
