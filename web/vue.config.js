@@ -1,6 +1,6 @@
 // development mode server
 module.exports = {
-    devServer: {
-      disableHostCheck: true
-    }
-}
+  devServer: {
+    disableHostCheck: true,
+  },
+};

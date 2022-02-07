@@ -3,16 +3,14 @@
 </template>
 
 <script>
-import slideView from '@/components/merged-components/slide-view.vue';
+import slideView from "@/components/merged-components/slide-view.vue";
 
 export default {
   name: "Search",
   components: {
-    slideView
+    slideView,
   },
 };
 </script>
 
-<style lang="scss">
-
-</style>
+<style lang="scss"></style>

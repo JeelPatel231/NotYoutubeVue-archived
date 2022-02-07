@@ -1,123 +1,132 @@
 <template>
-<div class="comment">
-    <img class="uploaderavatar" v-bind:src="comment.uploaderAvatarUrl">
+  <div class="comment">
+    <img class="uploaderavatar" v-bind:src="comment.uploaderAvatarUrl" />
     <div class="content">
-        <div class="name">{{comment.name}}
-            <span class="uploaddate">{{comment.textualUploadDate}}</span>
-        </div>
-        <div class="commenttext" ref="comment" v-bind:class="{clamped : collapsed}">{{comment.commentText}}</div>
-        <div v-if="overflow" class="show" v-on:click="collapsed = !collapsed">{{collapsed ? 'Read more' : 'Show less' }}</div>
-        <div class="likes">
-            <span class="material-icons">thumb_up</span>
-            {{comment.textualLikeCount}}
-             <span class="hearted" v-if="comment.heartedByUploader">
-                 <img v-bind:src="channelavatar">
-             </span>
-        </div>
+      <div class="name">
+        {{ comment.name }}
+        <span class="uploaddate">{{ comment.textualUploadDate }}</span>
+      </div>
+      <div
+        class="commenttext"
+        ref="comment"
+        v-bind:class="{ clamped: collapsed }"
+      >
+        {{ comment.commentText }}
+      </div>
+      <div v-if="overflow" class="show" v-on:click="collapsed = !collapsed">
+        {{ collapsed ? "Read more" : "Show less" }}
+      </div>
+      <div class="likes">
+        <span class="material-icons">thumb_up</span>
+        {{ comment.textualLikeCount }}
+        <span class="hearted" v-if="comment.heartedByUploader">
+          <img v-bind:src="channelavatar" />
+        </span>
+      </div>
     </div>
-</div>
+  </div>
 </template>
 
 <script>
 export default {
-    name:"comments",
-    props:["comment","channelavatar"],
-    data(){
-        return{
-            collapsed: true,
-            overflow : false,
-        }
+  name: "comments",
+  props: ["comment", "channelavatar"],
+  data() {
+    return {
+      collapsed: true,
+      overflow: false,
+    };
+  },
+  methods: {
+    checkOverflow() {
+      let ele = this.$refs.comment;
+      this.overflow = ele.offsetHeight < ele.scrollHeight;
     },
-    methods:{
-        checkOverflow(){
-            let ele = this.$refs.comment;
-            this.overflow = (ele.offsetHeight < ele.scrollHeight)
-        }
-    },
-    mounted(){
-        this.checkOverflow()
-    }
-}
+  },
+  mounted() {
+    this.checkOverflow();
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-.material-icons{
-    font-size: inherit;
-    margin-right: 8px;
+.material-icons {
+  font-size: inherit;
+  margin-right: 8px;
 }
-.comment{
-    display: flex;
-    margin-top: 16px;
+.comment {
+  display: flex;
+  margin-top: 16px;
 }
-.uploaderavatar{
-    height: 40px;
-    width: 40px;
-    border-radius: 20px;
-    margin-right: 16px;
+.uploaderavatar {
+  height: 40px;
+  width: 40px;
+  border-radius: 20px;
+  margin-right: 16px;
 }
-.content{
-    display: flex;
-    flex-direction: column;
+.content {
+  display: flex;
+  flex-direction: column;
 }
-.name{
-    line-height:1.8rem;
-    font-size: 1.3rem;
-    font-weight: 400;
-    margin-bottom: 4px;
+.name {
+  line-height: 1.8rem;
+  font-size: 1.3rem;
+  font-weight: 400;
+  margin-bottom: 4px;
 }
-.uploaddate{
-    color: #aaa;
+.uploaddate {
+  color: #aaa;
 }
-.commenttext{
-    line-height: 2rem;
-    font-size: 1.4rem;
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    white-space: pre-line;
-    &.clamped{
-        -webkit-line-clamp: 3;
-    }
+.commenttext {
+  line-height: 2rem;
+  font-size: 1.4rem;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  white-space: pre-line;
+  &.clamped {
+    -webkit-line-clamp: 3;
+  }
 }
-.likes{
-    font-size: 1.3rem;
-    line-height: 1.8rem;
-    color: #aaa;
-    display: flex;
-    align-items: center;
-    height: 36px;
+.likes {
+  font-size: 1.3rem;
+  line-height: 1.8rem;
+  color: #aaa;
+  display: flex;
+  align-items: center;
+  height: 36px;
 }
-.hearted{
-    height: 36px;
-    width: 36px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    img{
-        height: 16px;
-        width: 16px;
-        border-radius: 8px;
-    }
-    &::after{
-        content: '♥';
-        color: red;
-        position: absolute;
-        bottom: 4px;
-        right: 6px;
-        font-size: 1.8rem;
-        font-weight: bold;
-    }
-}
-.show{
-    line-height: 1.8rem;
-    font-size: 1.4rem;
-    margin-top: 4px;
-    color: #aaa;
+.hearted {
+  height: 36px;
+  width: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  img {
+    height: 16px;
+    width: 16px;
+    border-radius: 8px;
+  }
+  &::after {
+    content: "♥";
+    color: red;
+    position: absolute;
+    bottom: 4px;
+    right: 6px;
+    font-size: 1.8rem;
     font-weight: bold;
-    cursor: pointer;
-    &:hover{
-        text-decoration: underline;
-    }
+  }
+}
+.show {
+  line-height: 1.8rem;
+  font-size: 1.4rem;
+  margin-top: 4px;
+  color: #aaa;
+  font-weight: bold;
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
 }
 </style>
