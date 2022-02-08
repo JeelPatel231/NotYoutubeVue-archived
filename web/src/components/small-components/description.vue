@@ -21,7 +21,7 @@
         >
           {{ videoinfo.uploaderName }}
         </div>
-        <div class="subscribers">subscribers count</div>
+        <div class="subscribers"></div>
       </div>
       <!-- <div class="subscribe"></div> -->
     </div>
@@ -90,6 +90,7 @@ export default {
   }
   .subscribers {
     font-size: 1.3rem;
+    height: 1.8rem;
   }
 }
 .content {
