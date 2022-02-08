@@ -8,8 +8,14 @@
           <span class="seperator">•</span>
           {{ videoinfo.textualUploadDate }}
         </div>
-        <div class="buttons">
-          <div class="likecount">{{ videoinfo.likeCount }}</div>
+        <div class="buttons flex-center">
+          <div class="button flex-center">
+            <span class="material-icons button-icon">thumb_up</span
+            >{{ videoinfo.likeCount }}
+          </div>
+          <div class="button flex-center">
+            <span class="material-icons button-icon">share</span> SHARE
+          </div>
         </div>
       </div>
     </div>
@@ -108,5 +114,11 @@ export default {
 }
 .buttons {
   margin-left: auto;
+}
+.button {
+  padding-right: 8px;
+}
+.button-icon {
+  margin: 8px;
 }
 </style>

@@ -28,7 +28,10 @@
           >{{ carddata.streamCount }} videos</span
         >
       </div>
-      <div v-if="carddata.uploaderAvatarUrl" class="uploaderwrapper flex-center">
+      <div
+        v-if="carddata.uploaderAvatarUrl"
+        class="uploaderwrapper flex-center"
+      >
         <img v-bind:src="carddata.uploaderAvatarUrl" />
         <div
           class="uploaderName"
