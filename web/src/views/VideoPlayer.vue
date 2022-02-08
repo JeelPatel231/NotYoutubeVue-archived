@@ -4,10 +4,12 @@
       <div class="primary">
         <videoframe v-bind:videourl="apiResponse.videoStreams.at(-1).url" />
         <description v-bind:videoinfo="apiResponse.videoinfo" />
-        <commentsection
-          v-bind:channelavatar="apiResponse.videoinfo.uploaderAvatarUrl"
-          v-bind:videoid="videoid"
-        />
+        <div class="commentsection">
+          <commentsection
+            v-bind:channelavatar="apiResponse.videoinfo.uploaderAvatarUrl"
+            v-bind:videoid="videoid"
+          />
+        </div>
       </div>
       <div class="secondary">
         <videocardsmall

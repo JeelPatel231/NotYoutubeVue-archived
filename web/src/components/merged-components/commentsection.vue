@@ -4,22 +4,35 @@
     v-for="comment in apiresponse"
     :key="comment"
     v-bind:comment="comment"
+    v-bind:videoid="videoid"
   />
+  <div v-if="replysection" v-on:click="this.apicall()" class="fetchmore">
+    Show more
+  </div>
 </template>
 
 <script>
-import comments from "@/components/small-components/comments.vue";
+import { defineAsyncComponent } from "vue";
+
 export default {
   name: "commentsection",
-  props: ["videoid", "channelavatar", "nextPageUrl", "nextPageId"],
+  props: [
+    "videoid",
+    "channelavatar",
+    "nextpageurl",
+    "nextpageid",
+    "replysection",
+  ],
   components: {
-    comments,
+    comments: defineAsyncComponent(() =>
+      import("@/components/small-components/comments.vue")
+    ),
   },
   data() {
     return {
       apiresponse: [],
-      componentNextPageId: this.nextPageId,
-      componentNextPageUrl: this.nextPageUrl,
+      componentNextPageId: this.nextpageid,
+      componentNextPageUrl: this.nextpageurl,
     };
   },
   methods: {
@@ -51,7 +64,7 @@ export default {
         let bottomOfWindow =
           document.documentElement.scrollTop + window.innerHeight ===
           document.documentElement.offsetHeight;
-        if (bottomOfWindow) {
+        if (bottomOfWindow && !this.replysection) {
           console.log("bottom");
           this.apicall();
         }
@@ -65,4 +78,11 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.fetchmore {
+  line-height: 2rem;
+  font-size: 1.4rem;
+  color: #3ea6ff;
+  font-weight: bolder;
+}
+</style>

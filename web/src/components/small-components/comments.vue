@@ -23,18 +23,39 @@
           <img v-bind:src="channelavatar" />
         </span>
       </div>
+      <div
+        v-if="comment.replies"
+        v-on:click="showreplies = !showreplies"
+        class="showreplies"
+      >
+        {{ showreplies ? "▲ Hide replies" : "▼ Show replies" }}
+      </div>
+      <div v-if="showreplies" class="replies">
+        <commentsection
+          v-bind:channelavatar="channelavatar"
+          v-bind:videoid="videoid"
+          v-bind:nextpageurl="comment.replies.url"
+          v-bind:nextpageid="comment.replies.id"
+          v-bind:replysection="true"
+        />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import commentsection from "@/components/merged-components/commentsection.vue";
 export default {
   name: "comments",
-  props: ["comment", "channelavatar"],
+  components: {
+    commentsection,
+  },
+  props: ["comment", "videoid", "channelavatar", "nextpageurl", "nextpageid"],
   data() {
     return {
       collapsed: true,
       overflow: false,
+      showreplies: false,
     };
   },
   methods: {
@@ -128,5 +149,11 @@ export default {
   &:hover {
     text-decoration: underline;
   }
+}
+.showreplies {
+  line-height: 2rem;
+  font-size: 1.4rem;
+  color: #3ea6ff;
+  font-weight: bolder;
 }
 </style>
