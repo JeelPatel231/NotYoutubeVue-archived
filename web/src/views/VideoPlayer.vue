@@ -1,6 +1,6 @@
 <template>
   <div class="flexparent">
-    <div class="flexpage">
+    <div class="gridpage">
       <videoframe v-bind:videourl="apiResponse.videoStreams.at(-1).url" />
       <description v-bind:videoinfo="apiResponse.videoinfo" />
       <div class="commentsection">
@@ -58,11 +58,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.flexpage {
+.gridpage {
   padding: 24px;
   display: grid;
   column-gap: 24px;
-  justify-content: center;
+  max-width: 1754px;
 
   grid-template:
     "videoplayer related"
@@ -82,7 +82,7 @@ export default {
   color: #fff;
   display: flex;
   align-items: center;
-  max-width: 1754px;
+  justify-content: center;
 }
 .secondary {
   color: white;
