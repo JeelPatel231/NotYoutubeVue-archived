@@ -30,7 +30,7 @@ import commentsection from "@/components/merged-components/commentsection.vue";
 
 export default {
   name: "VideoPlayer",
-  props: ["videourl", "videoid", "videoinfo", "channelavatar"],
+  props: ["videourl", "videoinfo", "channelavatar"],
   components: {
     videoframe,
     description,
@@ -40,6 +40,7 @@ export default {
   data() {
     return {
       apiResponse: null,
+      videoid: this.$route.query.v,
     };
   },
   methods: {
