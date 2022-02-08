@@ -16,10 +16,10 @@
       <div v-if="overflow" class="show" v-on:click="collapsed = !collapsed">
         {{ collapsed ? "Read more" : "Show less" }}
       </div>
-      <div class="likes">
+      <div class="likes flex-center">
         <span class="material-icons">thumb_up</span>
         {{ comment.textualLikeCount }}
-        <span class="hearted" v-if="comment.heartedByUploader">
+        <span class="hearted flex-center" v-if="comment.heartedByUploader">
           <img v-bind:src="channelavatar" />
         </span>
       </div>
@@ -113,15 +113,11 @@ export default {
   font-size: 1.3rem;
   line-height: 1.8rem;
   color: #aaa;
-  display: flex;
-  align-items: center;
   height: 36px;
 }
 .hearted {
   height: 36px;
   width: 36px;
-  display: flex;
-  align-items: center;
   justify-content: center;
   position: relative;
   img {

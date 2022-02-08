@@ -2,17 +2,19 @@
   <div>
     <div class="videoinfoblock">
       <div class="videotitle">{{ videoinfo.name }}</div>
-      <div class="videoinfo">
+      <div class="videoinfo flex-center">
         <div class="info">
           {{ videoinfo.viewCount }} views
           <span class="seperator">•</span>
           {{ videoinfo.textualUploadDate }}
         </div>
-        <div class="buttons">BUTTONS</div>
+        <div class="buttons">
+          <div class="likecount">{{ videoinfo.likeCount }}</div>
+        </div>
       </div>
     </div>
     <span class="divider" />
-    <div class="channelinfoblock">
+    <div class="channelinfoblock flex-center">
       <img class="channelavatar" v-bind:src="videoinfo.uploaderAvatarUrl" />
       <div class="channelinfo">
         <div
@@ -59,11 +61,9 @@ export default {
 }
 .videoinfo {
   height: 40px;
-  display: flex;
   font-size: 1.4rem;
   color: #aaa;
   line-height: 2rem;
-  align-items: center;
 }
 .description {
   margin-left: 64px;
@@ -74,8 +74,6 @@ export default {
   display: block;
 }
 .channelinfoblock {
-  display: flex;
-  align-items: center;
   height: 50px;
   padding-top: 16px;
 

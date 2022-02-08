@@ -30,4 +30,9 @@ a{
     font-family: "Material Icons";
     font-size: 1.5rem;
     margin-left: 8px;
-  }
+}
+
+.flex-center{
+    display: flex;
+    align-items: center;
+}

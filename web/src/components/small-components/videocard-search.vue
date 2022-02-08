@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <div class="thumbnail">
+    <div class="thumbnail flex-center">
       <img
         v-bind:src="carddata.thumbnailUrl"
         v-bind:class="{ channelthumb: !carddata.streamType }"
@@ -28,7 +28,7 @@
           >{{ carddata.streamCount }} videos</span
         >
       </div>
-      <div v-if="carddata.uploaderAvatarUrl" class="uploaderwrapper">
+      <div v-if="carddata.uploaderAvatarUrl" class="uploaderwrapper flex-center">
         <img v-bind:src="carddata.uploaderAvatarUrl" />
         <div
           class="uploaderName"
@@ -103,9 +103,6 @@ export default {
   height: 202px; // youtube has 201.99 something, dont blame me, i am kanging blindy
   width: 360px;
 
-  // align center if thumbnail is a channel
-  display: flex;
-  align-items: center;
   justify-content: center;
   flex-shrink: 0;
   img {
@@ -131,8 +128,6 @@ export default {
 }
 
 .uploaderwrapper {
-  display: flex;
-  align-items: center;
   padding: 12px 0;
   img {
     height: 30px;
