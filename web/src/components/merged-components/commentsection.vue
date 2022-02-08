@@ -68,15 +68,17 @@ export default {
         });
     },
     getNextPage() {
-      window.onscroll = () => {
-        let bottomOfWindow =
-          document.documentElement.scrollTop + window.innerHeight ===
-          document.documentElement.offsetHeight;
-        if (bottomOfWindow && !this.replysection) {
-          console.log("bottom");
-          this.apicall();
-        }
-      };
+      if (!this.replysection) {
+        window.onscroll = () => {
+          let bottomOfWindow =
+            document.documentElement.scrollTop + window.innerHeight ===
+            document.documentElement.offsetHeight;
+          if (bottomOfWindow) {
+            console.log("bottom");
+            this.apicall();
+          }
+        };
+      }
     },
   },
   created() {
