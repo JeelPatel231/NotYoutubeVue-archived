@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="descriptionwrapper">
     <div class="videoinfoblock">
       <div class="videotitle">{{ videoinfo.name }}</div>
       <div class="videoinfo flex-center">
@@ -60,6 +60,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+#descriptionwrapper {
+  grid-area: description;
+}
 .videotitle {
   line-height: 2.6rem;
   font-size: 1.8rem;
@@ -101,6 +104,7 @@ export default {
   overflow: hidden;
   font-size: 1.4rem;
   line-height: 2rem;
+  word-break: break-word;
 
   &.collapsed {
     height: 60px;

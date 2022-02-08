@@ -15,8 +15,13 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
 #videoplayer {
   width: 100%;
+  grid-area: videoplayer;
+
+  @media only screen and (min-width: 1035px) {
+    min-width: 640px;
+  }
 }
 </style>

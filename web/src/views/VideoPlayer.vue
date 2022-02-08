@@ -1,15 +1,13 @@
 <template>
   <div class="flexparent">
     <div class="flexpage">
-      <div class="primary">
-        <videoframe v-bind:videourl="apiResponse.videoStreams.at(-1).url" />
-        <description v-bind:videoinfo="apiResponse.videoinfo" />
-        <div class="commentsection">
-          <commentsection
-            v-bind:channelavatar="apiResponse.videoinfo.uploaderAvatarUrl"
-            v-bind:videoid="videoid"
-          />
-        </div>
+      <videoframe v-bind:videourl="apiResponse.videoStreams.at(-1).url" />
+      <description v-bind:videoinfo="apiResponse.videoinfo" />
+      <div class="commentsection">
+        <commentsection
+          v-bind:channelavatar="apiResponse.videoinfo.uploaderAvatarUrl"
+          v-bind:videoid="videoid"
+        />
       </div>
       <div class="secondary">
         <videocardsmall
@@ -59,27 +57,43 @@ export default {
 };
 </script>
 
-<style>
-.flexparent {
-  display: flex;
-  justify-content: center;
-}
+<style lang="scss" scoped>
 .flexpage {
+  padding: 24px;
+  display: grid;
+  column-gap: 24px;
+  justify-content: center;
+
+  grid-template:
+    "videoplayer related"
+    "description none"
+    "comments none";
+
+  @media only screen and (max-width: 1034px) {
+    grid-template:
+      "videoplayer"
+      "description"
+      "related"
+      "comments";
+  }
+}
+
+.flexparent {
+  color: #fff;
   display: flex;
-  flex-wrap: wrap;
+  align-items: center;
   max-width: 1754px;
 }
-.primary {
-  min-width: 640px;
-  padding: 24px 24px 0 24px;
-  color: #fff;
-  flex: 1;
-}
 .secondary {
-  padding: 24px 24px 0 0;
   color: white;
-  max-width: 400px;
-  min-width: 320px;
-  flex: 1;
+  grid-area: related;
+  @media only screen and (min-width: 1035px) {
+    grid-row: 1 / -1;
+    max-width: 400px;
+    min-width: 320px;
+  }
+}
+.commentsection {
+  grid-area: comments;
 }
 </style>
