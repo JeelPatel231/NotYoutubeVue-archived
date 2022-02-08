@@ -106,7 +106,7 @@ export default {
   -webkit-box-orient: vertical;
   white-space: pre-line;
   &.clamped {
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 4;
   }
 }
 .likes {
