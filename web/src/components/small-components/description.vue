@@ -15,7 +15,12 @@
     <div class="channelinfoblock">
       <img class="channelavatar" v-bind:src="videoinfo.uploaderAvatarUrl" />
       <div class="channelinfo">
-        <div class="channelname">{{ videoinfo.uploaderName }}</div>
+        <div
+          class="channelname"
+          v-bind:class="{ verifiedChannel: videoinfo.isUploaderVerified }"
+        >
+          {{ videoinfo.uploaderName }}
+        </div>
         <div class="subscribers">subscribers count</div>
       </div>
       <!-- <div class="subscribe"></div> -->

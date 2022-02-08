@@ -28,6 +28,7 @@ suspend fun videoFunction(call: ApplicationCall){
                     "textualUploadDate" to it.textualUploadDate,
                     "uploaderName" to it.uploaderName,
                     "uploaderAvatarUrl" to it.uploaderAvatarUrl,
+                    "isUploaderVerified" to it.isUploaderVerified
                 ),
                 "hlsUrl" to it.hlsUrl,
                 "dashMpdUrl" to it.dashMpdUrl,

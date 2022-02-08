@@ -30,12 +30,12 @@
       </div>
       <div v-if="carddata.uploaderAvatarUrl" class="uploaderwrapper">
         <img v-bind:src="carddata.uploaderAvatarUrl" />
-        <div class="uploaderName">{{ carddata.uploaderName }}</div>
-        <span
-          v-if="carddata.uploaderVerified"
-          class="material-icons check_circle"
-          >check_circle</span
+        <div
+          class="uploaderName"
+          v-bind:class="{ verifiedChannel: carddata.uploaderVerified }"
         >
+          {{ carddata.uploaderName }}
+        </div>
       </div>
       <div class="description">
         {{ carddata.shortDescription }}{{ carddata.description }}
@@ -151,21 +151,9 @@ export default {
   padding-left: 8px;
 }
 
-.check_circle {
-  font-size: 1.4rem;
-  margin-left: 8px;
-}
-
 .flexcenter {
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
-
-.verifiedChannel::after {
-  content: "check_circle";
-  font-family: "Material Icons";
-  font-size: 1.5rem;
-  margin-left: 10px;
 }
 </style>

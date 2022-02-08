@@ -21,3 +21,13 @@ a{
 .seperator{
     margin: 0 5px;
 }
+
+.verifiedChannel{
+    display: flex;
+}
+.verifiedChannel::after {
+    content: "check_circle";
+    font-family: "Material Icons";
+    font-size: 1.5rem;
+    margin-left: 8px;
+  }
