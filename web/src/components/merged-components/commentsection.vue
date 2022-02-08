@@ -6,7 +6,11 @@
     v-bind:comment="comment"
     v-bind:videoid="videoid"
   />
-  <div v-if="replysection" v-on:click="this.apicall()" class="fetchmore">
+  <div
+    v-if="replysection && pageEnd"
+    v-on:click="this.apicall()"
+    class="fetchmore"
+  >
     Show more
   </div>
 </template>
@@ -31,6 +35,7 @@ export default {
   data() {
     return {
       apiresponse: [],
+      pageEnd: false,
       componentNextPageId: this.nextpageid,
       componentNextPageUrl: this.nextpageurl,
     };
@@ -53,10 +58,13 @@ export default {
       fetch(url)
         .then((x) => x.json())
         .then((x) => {
-          console.log(x.itemsList);
+          console.log(x);
           this.apiresponse = this.apiresponse.concat(x.itemsList);
-          this.componentNextPageUrl = x.nextPage.url;
-          this.componentNextPageId = x.nextPage.id;
+          this.pageEnd = !!x.nextPage;
+          if (x.nextPage) {
+            this.componentNextPageUrl = x.nextPage.url;
+            this.componentNextPageId = x.nextPage.id;
+          }
         });
     },
     getNextPage() {
