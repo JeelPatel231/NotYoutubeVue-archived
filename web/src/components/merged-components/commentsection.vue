@@ -1,4 +1,5 @@
 <template>
+  <div class="commentsection-header">Comments</div>
   <comments
     v-bind:channelavatar="channelavatar"
     v-for="comment in apiresponse"
@@ -88,7 +89,12 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
+.commentsection-header {
+  line-height: 2rem;
+  font-size: 1.8rem;
+  margin-top: 24px;
+}
 .fetchmore {
   line-height: 2rem;
   font-size: 1.4rem;

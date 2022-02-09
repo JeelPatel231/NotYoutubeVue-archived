@@ -36,3 +36,8 @@ a{
     display: flex;
     align-items: center;
 }
+.divider {
+    height: 1px;
+    background: #ffffff30;
+    display: block;
+}

@@ -15,6 +15,7 @@
           :key="video"
           :video="video"
         />
+        <span class="divider" />
       </div>
     </div>
   </div>
@@ -87,6 +88,7 @@ export default {
 .secondary {
   color: white;
   grid-area: related;
+  margin-top: 8px;
   @media only screen and (min-width: 1035px) {
     grid-row: 1 / -1;
     max-width: 400px;

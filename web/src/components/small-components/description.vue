@@ -77,11 +77,6 @@ export default {
 .description {
   margin-left: 64px;
 }
-.divider {
-  height: 1px;
-  background: #ffffff30;
-  display: block;
-}
 .channelinfoblock {
   height: 50px;
   padding-top: 16px;

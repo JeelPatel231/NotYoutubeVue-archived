@@ -27,7 +27,7 @@ export default {
 <style lang="scss" scoped>
 .videocardsmall {
   display: flex;
-  margin-top: 8px;
+  margin-bottom: 8px;
 
   img {
     height: 94px;
