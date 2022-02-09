@@ -1,5 +1,5 @@
 <template>
-  <div class="commentsection-header">Comments</div>
+  <div v-if="!replysection" class="commentsection-header">Comments</div>
   <comments
     v-bind:channelavatar="channelavatar"
     v-for="comment in apiresponse"
