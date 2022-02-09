@@ -1,53 +1,59 @@
 <template>
-  <div class="card">
-    <div class="thumbnail flex-center">
-      <img
-        v-bind:src="carddata.thumbnailUrl"
-        v-bind:class="{ channelthumb: !carddata.streamType }"
-      />
-    </div>
-    <div
-      class="textcontainer"
-      v-bind:class="{ flexcenter: !carddata.streamType }"
-    >
-      <div class="title" v-bind:class="{ verifiedChannel: carddata.verified }">
-        {{ carddata.name }}
-      </div>
-      <div class="metablock">
-        <span class="views" v-if="carddata.subscriberCount"
-          >{{ this.nFormatter(carddata.subscriberCount) }} subscribers</span
-        >
-        <span class="views" v-if="carddata.viewCount">{{
-          this.nFormatter(carddata.viewCount)
-        }}</span>
-        <span class="seperator">•</span>
-        <span class="time" v-if="carddata.textualUploadDate">{{
-          carddata.textualUploadDate
-        }}</span>
-        <span class="time" v-if="carddata.streamCount"
-          >{{ carddata.streamCount }} videos</span
-        >
+  <a v-bind:href="'/watch?v=' + carddata.url.split('v=')[1]">
+    <!-- YEP I KNOW, BAD AGAIN, I JUST CANT SEEM TO FIGURE OUT VUE-ROUTER -->
+    <div class="card">
+      <div class="thumbnail flex-center">
+        <img
+          v-bind:src="carddata.thumbnailUrl"
+          v-bind:class="{ channelthumb: !carddata.streamType }"
+        />
       </div>
       <div
-        v-if="carddata.uploaderAvatarUrl"
-        class="uploaderwrapper flex-center"
+        class="textcontainer"
+        v-bind:class="{ flexcenter: !carddata.streamType }"
       >
-        <img v-bind:src="carddata.uploaderAvatarUrl" />
         <div
-          class="uploaderName"
-          v-bind:class="{ verifiedChannel: carddata.uploaderVerified }"
+          class="title"
+          v-bind:class="{ verifiedChannel: carddata.verified }"
         >
-          {{ carddata.uploaderName }}
+          {{ carddata.name }}
+        </div>
+        <div class="metablock">
+          <span class="views" v-if="carddata.subscriberCount"
+            >{{ this.nFormatter(carddata.subscriberCount) }} subscribers</span
+          >
+          <span class="views" v-if="carddata.viewCount">{{
+            this.nFormatter(carddata.viewCount)
+          }}</span>
+          <span class="seperator">•</span>
+          <span class="time" v-if="carddata.textualUploadDate">{{
+            carddata.textualUploadDate
+          }}</span>
+          <span class="time" v-if="carddata.streamCount"
+            >{{ carddata.streamCount }} videos</span
+          >
+        </div>
+        <div
+          v-if="carddata.uploaderAvatarUrl"
+          class="uploaderwrapper flex-center"
+        >
+          <img v-bind:src="carddata.uploaderAvatarUrl" />
+          <div
+            class="uploaderName"
+            v-bind:class="{ verifiedChannel: carddata.uploaderVerified }"
+          >
+            {{ carddata.uploaderName }}
+          </div>
+        </div>
+        <div class="description">
+          {{ carddata.shortDescription }}{{ carddata.description }}
+        </div>
+        <div v-if="carddata.streamType == 'LIVE_STREAM'" class="livestream">
+          LIVE
         </div>
       </div>
-      <div class="description">
-        {{ carddata.shortDescription }}{{ carddata.description }}
-      </div>
-      <div v-if="carddata.streamType == 'LIVE_STREAM'" class="livestream">
-        LIVE
-      </div>
     </div>
-  </div>
+  </a>
 </template>
 <script>
 export default {
