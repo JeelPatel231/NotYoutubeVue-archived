@@ -100,6 +100,7 @@ export default {
   font-size: 1.4rem;
   line-height: 2rem;
   word-break: break-word;
+  white-space: pre-line;
 
   &.collapsed {
     height: 60px;

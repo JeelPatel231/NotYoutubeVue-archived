@@ -1,20 +1,23 @@
 <template>
-  <div class="videocardsmall">
-    <img v-bind:src="video.thumbnailUrl" />
-    <div class="metadatawrapper">
-      <div class="title">
-        {{ video.name }}
-      </div>
-      <div class="metadata">
-        <div>{{ video.uploaderName }}</div>
-        <div>
-          {{ video.viewCount }}
-          <span class="seperator">•</span>
-          {{ video.textualUploadDate }}
+  <a v-bind:href="'/watch?v=' + video.url.split('v=')[1]">
+    <!-- BAD ^^^^^^ I KNOW, but the component doesnt re-render again because of nested self-dependency in comment section, so a link for now -->
+    <div class="videocardsmall">
+      <img v-bind:src="video.thumbnailUrl" />
+      <div class="metadatawrapper">
+        <div class="title">
+          {{ video.name }}
+        </div>
+        <div class="metadata">
+          <div>{{ video.uploaderName }}</div>
+          <div>
+            {{ video.viewCount }}
+            <span class="seperator">•</span>
+            {{ video.textualUploadDate }}
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </a>
 </template>
 
 <script>
@@ -25,6 +28,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+a {
+  color: inherit;
+}
 .videocardsmall {
   display: flex;
   margin-bottom: 8px;

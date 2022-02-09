@@ -11,7 +11,7 @@ const routes = [
   },
   {
     path: "/watch",
-    name: "VideoPlayer",
+    name: "Watch",
     component: VideoPlayer,
     props: true,
   },
