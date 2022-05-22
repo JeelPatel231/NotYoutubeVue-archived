@@ -15,8 +15,8 @@ fun Route.comments() {
     }
 }
 
-private fun returnPage(extractor: CommentsExtractor, url:String? = "", id: String? = ""): ListExtractor.InfoItemsPage<CommentsInfoItem> {
-    return if (url == "" && id == "" || url == null &&  id == null){
+private fun returnPage(extractor: CommentsExtractor, url:String? = "", id: String?): ListExtractor.InfoItemsPage<CommentsInfoItem> {
+    return if (id == null){
         extractor.fetchPage()
         extractor.initialPage
     }
@@ -26,11 +26,13 @@ private fun returnPage(extractor: CommentsExtractor, url:String? = "", id: Strin
 }
 
 suspend fun commentsFunction(call:ApplicationCall){
-    val url = call.parameters["url"]
-    val id = call.parameters["id"]
+    val videoId = call.parameters["videoid"]
+    val url = "https://www.youtube.com/watch?v=$videoId"
+    var pageId = call.parameters["id"]
+    pageId = if(pageId == "" || pageId == "null") null else pageId
 
-    YouTube.getCommentsExtractor("https://www.youtube.com/watch?v=${call.parameters["videoid"]}")
+    YouTube.getCommentsExtractor(url)
         .also {
-        call.respond(returnPage(it,url,id))
-    }
+            call.respond(returnPage(it,url,pageId))
+        }
 }
