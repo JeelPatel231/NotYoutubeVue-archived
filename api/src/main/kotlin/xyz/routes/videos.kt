@@ -4,7 +4,6 @@ import io.ktor.server.application.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import org.schabi.newpipe.extractor.ServiceList.YouTube
-import org.schabi.newpipe.extractor.timeago.patterns.it
 
 fun Route.video() {
     get("/video/{id}") {
@@ -19,6 +18,8 @@ suspend fun videoFunction(call: ApplicationCall){
             it.fetchPage()
             call.respond(mapOf(
                 "videoStreams" to it.videoStreams,
+                "audioStreams" to it.audioStreams,
+                "videoOnlyStreams" to it.videoOnlyStreams,
                 "videoinfo" to mapOf(
                     "description" to it.description,
                     "name" to it.name,
@@ -28,7 +29,7 @@ suspend fun videoFunction(call: ApplicationCall){
                     "textualUploadDate" to it.textualUploadDate,
                     "uploaderName" to it.uploaderName,
                     "uploaderAvatarUrl" to it.uploaderAvatarUrl,
-                    "isUploaderVerified" to it.isUploaderVerified
+                    "isUploaderVerified" to it.isUploaderVerified,
                 ),
                 "hlsUrl" to it.hlsUrl,
                 "dashMpdUrl" to it.dashMpdUrl,
